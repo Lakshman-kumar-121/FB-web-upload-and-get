@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body> 
+  <button id="btn" > this is a btn</button>
+</body>
+
+<script type="module">
+
+  import { doc, collection, getFirestore, getDocs , setDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBHfXoCh2pyZ2a9nexEPx-SAqiOBFqF3PQ",
+    authDomain: "airlines-39598.firebaseapp.com",
+    projectId: "airlines-39598",
+    storageBucket: "airlines-39598.appspot.com",
+    messagingSenderId: "354138982142",
+    appId: "1:354138982142:web:be56795727a3aa0457c7af"
+  };
+
+  const priya = initializeApp(firebaseConfig);
+
+  const db = getFirestore(priya);
+  
+  const ourdata = await getDocs(collection(db, "Orders"));
+  document.write("<table border='2'><tr> <td> Name </td>  <td> Age </td>  <td> number</td> </tr> ");
+  
+      ourdata.forEach((doc) => {
+          var s = doc.data();
+          document.write("<tr>");
+          document.write( "<td>  "  + s['Name'] + " </td> ");
+          document.write( "<td>" + s['Age'] + "</td>");
+          document.write( "<td>" + s['number'] + "</td>");
+          
+          document.write("</tr>");
+  });
+
+  document.write("</table>  ");
+</script>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <style>
+    
+  body{
+    background-color: green;
+    margin-top: 20vh;
+padding: 20px;
+  }
+  .cnt{
+    background-color: white;
+    padding: 100px;
+    margin:  0px 30vw ;
+    
+  }
+  #bt{
+    background-color: blue;
+    padding: 15px 50px;
+    font-size: 20px;
+    color: white;
+    border-radius: 40px;
+  }
+  input{
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 20px;
+  }
+  #bt:hover{
+    cursor: pointer;
+    background-color: green;
+    
+  }
+  </style>
+  <center>
+    <div class="cnt">
+  <form action="" name="job">
+
+   <h3>Name : <input type="text" name="nme"><br><br>
+    Age : <input type="text" name="re" ><br><br>
+    number : <input type="text" name="you" ><br><br>
+</h3>
+  </form>
+  
+
+  
+  <button id="bt">submit</button>
+</div>
+</center>     
+</body>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  
+  import { doc, addDoc , collection, getFirestore, getDocs , setDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyAgWRWfzspjQsTsq9npDmfwY2VhUBJxoTE",
+    authDomain: "lpriya-21bad.firebaseapp.com",
+    projectId: "lpriya-21bad",
+    storageBucket: "lpriya-21bad.appspot.com",
+    messagingSenderId: "867316613647",
+    appId: "1:867316613647:web:e35270545bd3ae4ec9197a"
+  };
+
+const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+const bt = document.getElementById("bt");
+
+
+
+bt.addEventListener("click", async function() {
+  const docRef = await addDoc(collection(db, "users"), {
+  Name: document.job.nme.value ,
+  Age: document.job.re.value ,
+  ph: document.job.you.value 
+
+});
+document.job.nme.value = "";
+document.job.re.value = "";
+document.job.you.value = "";
+
+//   await setDoc(doc(db, "cities", "LA"), {
+// name: "Los Angeles",
+// state: "CA",
+// country: "USA"
+// });
+});
+
+</script>
+</html>
